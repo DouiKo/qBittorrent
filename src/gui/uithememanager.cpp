@@ -127,13 +127,9 @@ QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QStr
     }
 #endif
     QString iconp = m_themeSource->getIconPath(iconId, colorMode).data();
-    QPixmap pix(iconp);
-    qDebug()<<iconp<<pix.size();
     const QIcon icon {m_themeSource->getIconPath(iconId, colorMode).data()};
     icons[iconId] = icon;
     qDebug()<<icon.name()<<icon.isNull();
-    QMessageBox::information(nullptr,"1",iconp + pix.size() + icon.name() + icon.isNull());
-
     return icon;
 }
 
