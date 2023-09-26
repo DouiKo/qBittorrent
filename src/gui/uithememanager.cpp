@@ -106,7 +106,7 @@ void UIThemeManager::applyStyleSheet() const
 {
     qApp->setStyleSheet(QString::fromUtf8(m_themeSource->readStyleSheet()));
 }
-
+#include <QMessageBox>
 QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QString &fallback) const
 {
     const auto colorMode = isDarkTheme() ? ColorMode::Dark : ColorMode::Light;
@@ -126,9 +126,14 @@ QIcon UIThemeManager::getIcon(const QString &iconId, [[maybe_unused]] const QStr
         return icon;
     }
 #endif
-
+    QString iconp = m_themeSource->getIconPath(iconId, colorMode).data();
+    QPixmap pix(iconp);
+    qDebug()<<iconp<<pix.size();
     const QIcon icon {m_themeSource->getIconPath(iconId, colorMode).data()};
     icons[iconId] = icon;
+    qDebug()<<icon.name()<<icon.isNull();
+    QMessageBox::information(nullptr,"1",iconp + pix.size() + icon.name() + icon.isNull());
+
     return icon;
 }
 

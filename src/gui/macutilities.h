@@ -45,4 +45,6 @@ namespace MacUtils
 
     QString badgeLabelText();
     void setBadgeLabelText(const QString &text);
+
+    bool isDefaultAppForFileType(QString fileType);
 }

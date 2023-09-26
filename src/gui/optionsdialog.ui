@@ -122,8 +122,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>1064</height>
+             <width>557</width>
+             <height>1222</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_9">
@@ -805,8 +805,8 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>539</width>
-             <height>1457</height>
+             <width>641</width>
+             <height>1696</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout">
@@ -1621,8 +1621,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>504</width>
-             <height>848</height>
+             <width>447</width>
+             <height>960</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_20">
@@ -2197,8 +2197,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>302</width>
-             <height>408</height>
+             <width>351</width>
+             <height>446</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_5">
@@ -2534,8 +2534,8 @@ readme[0-9].txt: filter 'readme1.txt', 'readme2.txt' but not 'readme10.txt'.</st
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>413</width>
-             <height>693</height>
+             <width>543</width>
+             <height>825</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_7">
@@ -3077,8 +3077,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>336</width>
-             <height>391</height>
+             <width>397</width>
+             <height>419</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_27">
@@ -3247,8 +3247,8 @@ Disable encryption: Only connect to peers without protocol encryption</string>
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>382</width>
-             <height>1045</height>
+             <width>441</width>
+             <height>1175</height>
             </rect>
            </property>
            <layout class="QVBoxLayout" name="verticalLayout_23">

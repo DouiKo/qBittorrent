@@ -290,9 +290,9 @@ void OptionsDialog::loadBehaviorTabOptions()
 #ifdef Q_OS_MACOS
     m_ui->checkShowSystray->setVisible(false);
     m_ui->checkAssociateTorrents->setChecked(Preferences::isTorrentFileAssocSet());
-    m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
+//    m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
     m_ui->checkAssociateMagnetLinks->setChecked(Preferences::isMagnetLinkAssocSet());
-    m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
+//    m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
 #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)

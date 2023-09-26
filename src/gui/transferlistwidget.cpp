@@ -148,7 +148,7 @@ TransferListWidget::TransferListWidget(QWidget *parent, MainWindow *mainWindow)
     setSortingEnabled(true);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setItemsExpandable(false);
-    setAutoScroll(true);
+//    setAutoScroll(true);
     setDragDropMode(QAbstractItemView::DragOnly);
 #if defined(Q_OS_MACOS)
     setAttribute(Qt::WA_MacShowFocusRect, false);
@@ -1327,7 +1327,13 @@ void TransferListWidget::applyFilter(const QString &name, const TransferListMode
 {
     m_sortFilterModel->setFilterKeyColumn(type);
     const QString pattern = (Preferences::instance()->getRegexAsFilteringPatternForTransferList()
-                ? name : QRegularExpression::escape(Utils::String::wildcardToRegexPattern(name)));
+                ? name :
+        Utils::String::wildcardToRegexPattern(name));
+    QString test = name;
+    test.replace(u"["_s,u"\\["_s);
+    test.replace(u"]"_s,u"\\]"_s);
+//        Utils::String::wildcardToRegexPattern(QRegularExpression::escape(name)));
+    qDebug()<<pattern<<test;
     m_sortFilterModel->setFilterRegularExpression(QRegularExpression(pattern, QRegularExpression::CaseInsensitiveOption));
 }
 

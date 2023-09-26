@@ -1402,9 +1402,14 @@ namespace
     const CFStringRef magnetUrlScheme = CFSTR("magnet");
 }
 
+#include "gui/macutilities.h"
+
 bool Preferences::isTorrentFileAssocSet()
 {
     bool isSet = false;
+//    if (MacUtils::isDefaultAppForFileType(QString(u"magnet"_s))) {
+
+//    }
     const CFStringRef torrentId = UTTypeCreatePreferredIdentifierForTag(kUTTagClassFilenameExtension, torrentExtension, NULL);
     if (torrentId != NULL)
     {
