@@ -128,13 +128,13 @@ namespace MacUtils
         NSApp.dockTile.badgeLabel = text.toNSString();
     }
 
-    bool isDefaultAppForFileType(QString fileType) {
+//    bool isDefaultAppForFileType(QString fileType) {
 //        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
 //        NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
 //        NSDictionary *defaultAppInfo = [workspace URLForApplicationToOpenURL:[NSURL URLWithString:fileType.toNSString()]
 //                                                            withBundleIdentifier:nil];
 //        NSString *defaultAppBundleIdentifier = defaultAppInfo[NSWorkspaceApplicationKey];
 //        return [bundleIdentifier isEqualToString:defaultAppBundleIdentifier];
-        return false;
-    }
+//        return false;
+//    }
 }
