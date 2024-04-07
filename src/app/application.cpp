@@ -1358,7 +1358,7 @@ void Application::cleanup()
     delete RSS::Session::instance();
 
     TorrentFilesWatcher::freeInstance();
-    delete m_addTorrentManager;
+    m_addTorrentManager->deleteLater();
     BitTorrent::Session::freeInstance();
     Net::GeoIPManager::freeInstance();
     Net::DownloadManager::freeInstance();
