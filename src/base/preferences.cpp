@@ -214,7 +214,7 @@ void Preferences::setHideZeroComboValues(const int n)
 
 // In Mac OS X the dock is sufficient for our needs so we disable the sys tray functionality.
 // See extensive discussion in https://github.com/qbittorrent/qBittorrent/pull/3018
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
 bool Preferences::systemTrayEnabled() const
 {
     return value(u"Preferences/General/SystrayEnabled"_s, true);
@@ -292,7 +292,7 @@ void Preferences::setIconsInMenusEnabled(const bool enable)
 
     setValue(u"Preferences/Advanced/EnableIconsInMenus"_s, enable);
 }
-#endif // Q_OS_MACOS
+// #endif // Q_OS_MACOS
 
 qint64 Preferences::getTorrentFileSizeLimit() const
 {
@@ -1516,7 +1516,7 @@ void Preferences::setConfirmRemoveTrackerFromAllTorrents(const bool enabled)
     setValue(u"GUI/ConfirmActions/RemoveTrackerFromAllTorrents"_s, enabled);
 }
 
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
 TrayIcon::Style Preferences::trayIconStyle() const
 {
     return value(u"Preferences/Advanced/TrayIconStyle"_s, TrayIcon::Style::Normal);
@@ -1529,7 +1529,7 @@ void Preferences::setTrayIconStyle(const TrayIcon::Style style)
 
     setValue(u"Preferences/Advanced/TrayIconStyle"_s, style);
 }
-#endif
+// #endif
 
 // Stuff that don't appear in the Options GUI but are saved
 // in the same file.

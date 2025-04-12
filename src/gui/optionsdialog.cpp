@@ -296,9 +296,8 @@ void OptionsDialog::loadBehaviorTabOptions()
 
     m_ui->windowStateComboBox->addItem(tr("Normal"), QVariant::fromValue(WindowState::Normal));
     m_ui->windowStateComboBox->addItem(tr("Minimized"), QVariant::fromValue(WindowState::Minimized));
-#ifndef Q_OS_MACOS
     m_ui->windowStateComboBox->addItem(tr("Hidden"), QVariant::fromValue(WindowState::Hidden));
-#endif
+
     m_ui->windowStateComboBox->setCurrentIndex(m_ui->windowStateComboBox->findData(QVariant::fromValue(app()->startUpWindowState())));
 
 #if !(defined(Q_OS_WIN) || defined(Q_OS_MACOS))
@@ -306,7 +305,7 @@ void OptionsDialog::loadBehaviorTabOptions()
     m_ui->checkProgramUpdates->setVisible(false);
 #endif
 
-#ifndef Q_OS_MACOS
+
     // Disable systray integration if it is not supported by the system
     if (!QSystemTrayIcon::isSystemTrayAvailable())
     {
@@ -315,22 +314,22 @@ void OptionsDialog::loadBehaviorTabOptions()
         m_ui->checkShowSystray->setToolTip(tr("Disabled due to failed to detect system tray presence"));
     }
     m_ui->checkShowSystray->setChecked(pref->systemTrayEnabled());
+    m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
+// #ifndef Q_OS_MACOS
     m_ui->checkMinimizeToSysTray->setChecked(pref->minimizeToTray());
     m_ui->checkCloseToSystray->setChecked(pref->closeToTray());
-    m_ui->comboTrayIcon->setCurrentIndex(static_cast<int>(pref->trayIconStyle()));
-#endif
+// #endif
 
 #ifdef Q_OS_WIN
     m_ui->checkStartup->setChecked(pref->WinStartup());
 #endif
 
-#ifdef Q_OS_MACOS
-    m_ui->checkShowSystray->setVisible(false);
-    m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
-    m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
-    m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
-    m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
-#endif
+// #ifdef Q_OS_MACOS
+//     m_ui->checkAssociateTorrents->setChecked(Utils::OS::isTorrentFileAssocSet());
+//     m_ui->checkAssociateTorrents->setEnabled(!m_ui->checkAssociateTorrents->isChecked());
+//     m_ui->checkAssociateMagnetLinks->setChecked(Utils::OS::isMagnetLinkAssocSet());
+//     m_ui->checkAssociateMagnetLinks->setEnabled(!m_ui->checkAssociateMagnetLinks->isChecked());
+// #endif
 
 #if defined(Q_OS_WIN) || defined(Q_OS_MACOS)
     m_ui->checkProgramUpdates->setChecked(pref->isUpdateCheckEnabled());
@@ -499,12 +498,12 @@ void OptionsDialog::saveBehaviorTabOptions() const
     pref->setWinStartup(WinStartup());
 #endif
 
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
     pref->setSystemTrayEnabled(m_ui->checkShowSystray->isChecked());
     pref->setTrayIconStyle(TrayIcon::Style(m_ui->comboTrayIcon->currentIndex()));
     pref->setCloseToTray(m_ui->checkCloseToSystray->isChecked());
     pref->setMinimizeToTray(m_ui->checkMinimizeToSysTray->isChecked());
-#endif
+// #endif
 
 #ifdef Q_OS_MACOS
     if (m_ui->checkAssociateTorrents->isChecked())

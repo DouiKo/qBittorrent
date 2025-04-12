@@ -325,7 +325,7 @@ public:
     void setConfirmMergeTrackers(bool enabled);
     bool confirmRemoveTrackerFromAllTorrents() const;
     void setConfirmRemoveTrackerFromAllTorrents(bool enabled);
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
     bool systemTrayEnabled() const;
     void setSystemTrayEnabled(bool enabled);
     bool minimizeToTrayNotified() const;
@@ -340,7 +340,7 @@ public:
     void setTrayIconStyle(TrayIcon::Style style);
     bool iconsInMenusEnabled() const;
     void setIconsInMenusEnabled(bool enable);
-#endif // Q_OS_MACOS
+// #endif // Q_OS_MACOS
     qint64 getTorrentFileSizeLimit() const;
     void setTorrentFileSizeLimit(qint64 value);
     int getBdecodeDepthLimit() const;

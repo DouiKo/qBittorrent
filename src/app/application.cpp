@@ -864,7 +864,7 @@ int Application::exec()
 
     m_desktopIntegration = new DesktopIntegration;
     m_desktopIntegration->setToolTip(tr("Loading torrents..."));
-#ifndef Q_OS_MACOS
+
     auto *desktopIntegrationMenu = m_desktopIntegration->menu();
     auto *actionExit = new QAction(tr("E&xit"), desktopIntegrationMenu);
     actionExit->setIcon(UIThemeManager::instance()->getIcon(u"application-exit"_s));
@@ -877,9 +877,6 @@ int Application::exec()
     desktopIntegrationMenu->addAction(actionExit);
 
     const bool isHidden = m_desktopIntegration->isActive() && (startUpWindowState() == WindowState::Hidden);
-#else
-    const bool isHidden = false;
-#endif
 
     if (!isHidden)
     {
@@ -936,14 +933,10 @@ int Application::exec()
         });
 
         disconnect(m_desktopIntegration, &DesktopIntegration::activationRequested, this, &Application::createStartupProgressDialog);
-#ifndef Q_OS_MACOS
         const WindowState windowState = !m_startupProgressDialog ? WindowState::Hidden
                 : (m_startupProgressDialog->windowState() & Qt::WindowMinimized) ? WindowState::Minimized
                         : WindowState::Normal;
-#else
-        const WindowState windowState = (m_startupProgressDialog->windowState() & Qt::WindowMinimized)
-                ? WindowState::Minimized : WindowState::Normal;
-#endif
+
         m_window = new MainWindow(this, windowState, instanceName());
 
         delete m_startupProgressDialog;

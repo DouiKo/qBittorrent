@@ -34,9 +34,9 @@
 #include "base/settingvalue.h"
 
 class QMenu;
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
 class QSystemTrayIcon;
-#endif
+// #endif
 #ifdef QBT_USES_DBUS
 class DBusNotifier;
 #endif
@@ -74,18 +74,18 @@ signals:
 
 private:
     void onPreferencesChanged();
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
     void createTrayIcon();
     QIcon getSystrayIcon() const;
-#endif // Q_OS_MACOS
+// #endif // Q_OS_MACOS
 
     CachedSettingValue<bool> m_storeNotificationEnabled;
 
     QMenu *m_menu = nullptr;
     QString m_toolTip;
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
     QSystemTrayIcon *m_systrayIcon = nullptr;
-#endif
+// #endif
 #ifdef QBT_USES_DBUS
     CachedSettingValue<int> m_storeNotificationTimeOut;
     DBusNotifier *m_notifier = nullptr;

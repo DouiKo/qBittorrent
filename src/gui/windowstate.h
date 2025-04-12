@@ -38,9 +38,7 @@ inline namespace WindowStateNS
     {
         Normal,
         Minimized,
-#ifndef Q_OS_MACOS
         Hidden
-#endif
     };
     Q_ENUM_NS(WindowState)
 }

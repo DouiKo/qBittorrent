@@ -281,6 +281,8 @@ endif()
 
 if (CMAKE_SYSTEM_NAME STREQUAL "Darwin")
     target_sources(qbt_gui PRIVATE
+        macosstatus/macstatus.h
+        macosstatus/macstatus.mm
         macosdockbadge/badger.h
         macosdockbadge/badger.mm
         macosdockbadge/badgeview.h

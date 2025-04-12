@@ -57,31 +57,31 @@ namespace MacUtils
         }
     }
 
-    void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...))
-    {
-        NSApplication *appInst = [NSApplication sharedApplication];
+    // void overrideDockClickHandler(bool (*dockClickHandler)(id, SEL, ...))
+    // {
+    //     NSApplication *appInst = [NSApplication sharedApplication];
 
-        if (!appInst)
-            return;
+    //     if (!appInst)
+    //         return;
 
-        Class delClass = [[appInst delegate] class];
-        SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
+    //     Class delClass = [[appInst delegate] class];
+    //     SEL shouldHandle = sel_registerName("applicationShouldHandleReopen:hasVisibleWindows:");
 
-        if (class_getInstanceMethod(delClass, shouldHandle))
-        {
-            if (class_replaceMethod(delClass, shouldHandle, reinterpret_cast<IMP>(dockClickHandler), "B@:"))
-                qDebug("Registered dock click handler (replaced original method)");
-            else
-                qWarning("Failed to replace method for dock click handler");
-        }
-        else
-        {
-            if (class_addMethod(delClass, shouldHandle, reinterpret_cast<IMP>(dockClickHandler), "B@:"))
-                qDebug("Registered dock click handler");
-            else
-                qWarning("Failed to register dock click handler");
-        }
-    }
+    //     if (class_getInstanceMethod(delClass, shouldHandle))
+    //     {
+    //         if (class_replaceMethod(delClass, shouldHandle, reinterpret_cast<IMP>(dockClickHandler), "B@:"))
+    //             qDebug("Registered dock click handler (replaced original method)");
+    //         else
+    //             qWarning("Failed to replace method for dock click handler");
+    //     }
+    //     else
+    //     {
+    //         if (class_addMethod(delClass, shouldHandle, reinterpret_cast<IMP>(dockClickHandler), "B@:"))
+    //             qDebug("Registered dock click handler");
+    //         else
+    //             qWarning("Failed to register dock click handler");
+    //     }
+    // }
 
     void displayNotification(const QString &title, const QString &message)
     {

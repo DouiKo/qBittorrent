@@ -35,9 +35,9 @@
 #include <QMenu>
 #include <QTimer>
 
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
 #include <QSystemTrayIcon>
-#endif
+// #endif
 
 #include "base/preferences.h"
 #include "uithememanager.h"
@@ -52,17 +52,17 @@
 
 namespace
 {
-#ifdef Q_OS_MACOS
-    DesktopIntegration *desktopIntegrationInstance = nullptr;
+// #ifdef Q_OS_MACOS
+//     DesktopIntegration *desktopIntegrationInstance = nullptr;
 
-    bool handleDockClicked([[maybe_unused]] id self, [[maybe_unused]] SEL cmd, ...)
-    {
-        Q_ASSERT(desktopIntegrationInstance);
-        emit desktopIntegrationInstance->activationRequested();
+//     bool handleDockClicked([[maybe_unused]] id self, [[maybe_unused]] SEL cmd, ...)
+//     {
+//         Q_ASSERT(desktopIntegrationInstance);
+//         emit desktopIntegrationInstance->activationRequested();
 
-        return true;
-    }
-#endif
+//         return true;
+//     }
+// #endif
 }
 
 using namespace std::chrono_literals;
@@ -78,11 +78,6 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
     , m_storeNotificationTimeOut {NOTIFICATIONS_SETTINGS_KEY(u"Timeout"_s), -1}
 #endif
 {
-#ifdef Q_OS_MACOS
-    desktopIntegrationInstance = this;
-    MacUtils::overrideDockClickHandler(handleDockClicked);
-    m_menu->setAsDockMenu();
-#else
     if (Preferences::instance()->systemTrayEnabled())
         createTrayIcon();
 
@@ -93,7 +88,7 @@ DesktopIntegration::DesktopIntegration(QObject *parent)
         connect(m_notifier, &DBusNotifier::messageClicked, this, &DesktopIntegration::notificationClicked);
     }
 #endif
-#endif
+
 
     connect(Preferences::instance(), &Preferences::changed, this, &DesktopIntegration::onPreferencesChanged);
 }
@@ -105,11 +100,11 @@ DesktopIntegration::~DesktopIntegration()
 
 bool DesktopIntegration::isActive() const
 {
-#ifdef Q_OS_MACOS
+// #ifdef Q_OS_MACOS
     return true;
-#else
+// #else
     return m_systrayIcon && QSystemTrayIcon::isSystemTrayAvailable();
-#endif
+// #endif
 }
 
 QString DesktopIntegration::toolTip() const
@@ -123,10 +118,10 @@ void DesktopIntegration::setToolTip(const QString &toolTip)
         return;
 
     m_toolTip = toolTip;
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
     if (m_systrayIcon)
         m_systrayIcon->setToolTip(m_toolTip);
-#endif
+// #endif
 }
 
 QMenu *DesktopIntegration::menu() const
@@ -181,21 +176,21 @@ void DesktopIntegration::showNotification(const QString &title, const QString &m
     if (!isNotificationsEnabled())
         return;
 
-#ifdef Q_OS_MACOS
-    MacUtils::displayNotification(title, msg);
-#else
+// #ifdef Q_OS_MACOS
+    // MacUtils::displayNotification(title, msg);
+// #else
 #ifdef QBT_USES_DBUS
     m_notifier->showMessage(title, msg, notificationTimeout());
 #else
     if (m_systrayIcon && QSystemTrayIcon::supportsMessages())
         m_systrayIcon->showMessage(title, msg, QSystemTrayIcon::Information, notificationTimeout());
 #endif
-#endif
+// #endif
 }
 
 void DesktopIntegration::onPreferencesChanged()
 {
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
     if (Preferences::instance()->systemTrayEnabled())
     {
         if (m_systrayIcon)
@@ -214,10 +209,10 @@ void DesktopIntegration::onPreferencesChanged()
         m_systrayIcon = nullptr;
         emit stateChanged();
     }
-#endif
+// #endif
 }
 
-#ifndef Q_OS_MACOS
+// #ifndef Q_OS_MACOS
 void DesktopIntegration::createTrayIcon()
 {
     Q_ASSERT(!m_systrayIcon);
@@ -267,4 +262,4 @@ QIcon DesktopIntegration::getSystrayIcon() const
 #endif
     return icon;
 }
-#endif // Q_OS_MACOS
+// #endif // Q_OS_MACOS
